@@ -1,28 +1,21 @@
-import React from 'react';
-import './index.css';
+import Header from "./components/Header";
+import FormBase from "./components/FormBase";
+import PostHeader from "./components/PostHeader";
+import PostBody from "./components/PostBody";
 
-function Header({ children }) {
-  return (
-    <header className='bg-white'>
-      <nav className='mx-auto flex items-center p-6 shadow-xl'>
-        {children}
-      </nav>
-    </header>
-  )
-}
-
-function HeaderLink({ href, children }) {
-  return (
-    <a href={href} className='font-semibold leading-6 ml-5 text-black'>{children}</a>
-  );
-}
 
 function App() {
   return (
     <>
-      <Header>
-        <HeaderLink href='#'>Company</HeaderLink>
+      <Header className="flex items-center p-3 shadow-md">
+        <h1 className="ml-5 font-bold text-2x1">FS34BLOG</h1>
+        <FormBase className="ml-5 ">
+          <input type="text" className="border px-2 py-1 rounded" />
+          <button className="border rounded border-black px-2 py-1 ml-2">Pesquisar</button>
+        </FormBase>
       </Header>
+      <PostHeader/>
+      <PostBody/>
     </>
   );
 }
