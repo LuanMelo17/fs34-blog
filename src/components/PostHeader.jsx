@@ -1,12 +1,14 @@
-export default function PostHeader() {
+
+import { Link } from "react-router-dom";
+
+export default function PostHeader({authorName, authorProfile, postDate, authorUsername}) {
     return (
         <div className="flex items-center gap-2">
-            <img src="/Profile/fotoblog.jpg" 
-            className="rounded-full w-12 h-10 object-cover object-top ml-3"/>
-            <a href="#" className="underline">Fulano de tal</a>
+            <img src={authorProfile} 
+                className="rounded-full w-10 h-10 object-cover object-top ml-3" />
+            <Link to={authorUsername} className="underline">{authorName}</Link>
             <span>-</span>
-            <span>20/10/2024</span>
-            
+            <span>{postDate}</span>
         </div>
     );
 }
