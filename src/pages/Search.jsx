@@ -4,20 +4,33 @@ import Layout from './../components/Layout';
 import Post from '../components/Post';
 import posts from '../api/posts';
 import users from '../api/users';
+import { useLocation } from 'react-router-dom';
 
+function Search() {
 
-function App() {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    let query = searchParams.get('query');
+
+    const postsFiltered = posts.filter(function (post) {
+        query = query.toLocaleLowerCase();
+        return post.title.toLocaleLowerCase().includes(query);
+    });
+
     return (
         <>
-            <Layout showSideBar>
-                { posts.map(function(post) {
+            <Layout>
+                
+                <h2>Resultado: </h2>
+
+                { postsFiltered.map(function(post) {
                     
                     let user = users.find(function(user) {
                         return user.id === post.user_id;
                     });
 
                     return (
-                        <Post>
+                        <Post key={post.id}>
                             <PostHeader 
                                 authorName={user.name} 
                                 authorProfile={user.profile_path}
@@ -38,4 +51,4 @@ function App() {
     );
 }
 
-export default App;
+export default Search;
